@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallisticsSandbox", "BallisticsSandbox\BallisticsSandbox.csproj", "{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA07C3D8-3188-41E6-8EF8-8B6F86A7849F}
+	EndGlobalSection
+EndGlobal
