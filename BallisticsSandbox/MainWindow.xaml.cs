@@ -24,5 +24,23 @@ namespace BallisticsSandbox
         {
             InitializeComponent();
         }
+
+        private void Calculate_Click(object sender, RoutedEventArgs e)
+        {
+            CalculateKineticEnergy();
+            CalculateMomentum();
+
+            this.Content = new Output();
+        }
+
+        private double CalculateKineticEnergy()
+        {
+            return 0.5 * Double.Parse(Weight.Text) * Math.Pow(Double.Parse(Velocity.Text), 2);
+        }
+
+        private double CalculateMomentum()
+        {
+            return Double.Parse(Weight.Text) * Double.Parse(Velocity.Text);
+        }
     }
 }
