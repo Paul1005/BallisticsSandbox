@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BallisticsSandbox.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,23 @@ namespace BallisticsSandbox
     /// <summary>
     /// Interaction logic for Output.xaml
     /// </summary>
-    public partial class Output : Window
+    public partial class Output : UserControl, ISwitchable
     {
         public Output()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// <para/> Will switch the screen to whatever is passed in.
+        /// <para/>Input: state - unused.
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: March 30, 2017
+        /// </summary>
+        public void UtilizeState(object state)
+        {
+            Switcher.Switch((UserControl)state);
         }
     }
 }

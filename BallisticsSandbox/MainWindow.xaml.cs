@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BallisticsSandbox.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,23 @@ namespace BallisticsSandbox
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : UserControl, ISwitchable
     {
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// <para/> Will switch the screen to whatever is passed in.
+        /// <para/>Input: state - unused.
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: March 30, 2017
+        /// </summary>
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
         }
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
@@ -30,7 +43,9 @@ namespace BallisticsSandbox
             CalculateKineticEnergy();
             CalculateMomentum();
 
-            this.Content = new Output();
+            UserControl output = new Output();
+
+            Switcher.Switch(output);
         }
 
         private double CalculateKineticEnergy()

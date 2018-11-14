@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Objects\ISwitchable.cs" />
+    <Compile Include="WindowSwitcher.xaml.cs">
+      <DependentUpon>WindowSwitcher.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,11 +75,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowSwitcher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\Bullet.cs" />
     <Compile Include="Objects\Environment.cs" />
     <Compile Include="Objects\Surface.cs" />
+    <Compile Include="Objects\Switcher.cs" />
     <Compile Include="Output.xaml.cs">
       <DependentUpon>Output.xaml</DependentUpon>
     </Compile>
