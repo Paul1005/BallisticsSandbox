@@ -20,9 +20,12 @@ namespace BallisticsSandbox
     /// </summary>
     public partial class Output : UserControl, ISwitchable
     {
-        public Output()
+        public Output(double Ek, double P)
         {
             InitializeComponent();
+
+            KineticEnergy.Text = Ek.ToString();
+            Recoil.Text = P.ToString();
         }
 
         /// <summary>

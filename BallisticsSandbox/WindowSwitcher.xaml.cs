@@ -16,7 +16,6 @@ namespace BallisticsSandbox
         {
             InitializeComponent();
             Switcher.pageSwitcher = this;
-            Debug.WriteLine("test");
             Switcher.Switch(new MainWindow());
         }
 

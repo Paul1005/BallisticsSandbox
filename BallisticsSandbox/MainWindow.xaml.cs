@@ -40,10 +40,7 @@ namespace BallisticsSandbox
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
-            CalculateKineticEnergy();
-            CalculateMomentum();
-
-            UserControl output = new Output();
+            UserControl output = new Output(CalculateKineticEnergy(), CalculateMomentum());
 
             Switcher.Switch(output);
         }
