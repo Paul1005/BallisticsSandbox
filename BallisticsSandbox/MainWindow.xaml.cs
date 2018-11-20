@@ -40,7 +40,7 @@ namespace BallisticsSandbox
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
-            UserControl output = new Output(CalculateKineticEnergy(), CalculateMomentum());
+            UserControl output = new Output(CalculateKineticEnergy(), CalculateMomentum(), CalculatePenetration());
 
             Switcher.Switch(output);
         }
@@ -53,6 +53,11 @@ namespace BallisticsSandbox
         private double CalculateMomentum()
         {
             return Double.Parse(Weight.Text) * Double.Parse(Velocity.Text);
+        }
+
+        private double CalculatePenetration()
+        {
+            return CalculateKineticEnergy() / Double.Parse(Diameter.Text);
         }
     }
 }

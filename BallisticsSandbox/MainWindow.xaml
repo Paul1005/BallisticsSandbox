@@ -14,6 +14,10 @@
         <Label Content="Velocity" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Weight" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         <Label Content="Diameter" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Calculate" Content="Calculate" HorizontalAlignment="Left" Margin="97,112,0,0" VerticalAlignment="Top" Width="75" Click="Calculate_Click"/>
+        <Button x:Name="Calculate" Content="Calculate" HorizontalAlignment="Left" Margin="97,160,0,0" VerticalAlignment="Top" Width="75" Click="Calculate_Click"/>
+        <Label Content="Gravity" HorizontalAlignment="Left" Margin="11,95,0,0" VerticalAlignment="Top"/>
+        <Label Content="Air Resistance" HorizontalAlignment="Left" Margin="11,121,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Gravity" HorizontalAlignment="Left" Height="23" Margin="67,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="AirResistance" HorizontalAlignment="Left" Height="23" Margin="99,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </UserControl>
