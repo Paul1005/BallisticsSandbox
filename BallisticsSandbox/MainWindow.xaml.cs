@@ -21,6 +21,11 @@ namespace BallisticsSandbox
     /// </summary>
     public partial class MainWindow : UserControl, ISwitchable
     {
+        public double kineticEnergy;
+        public double momentum;
+        public double penetration;
+        public double drag;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,24 +45,42 @@ namespace BallisticsSandbox
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
-            UserControl output = new Output(CalculateKineticEnergy(), CalculateMomentum(), CalculatePenetration());
+            CalculateKineticEnergy(Double.Parse(Weight.Text), Double.Parse(Velocity.Text));
+            CalculateMomentum(Double.Parse(Weight.Text), Double.Parse(Velocity.Text));
+            CalculatePenetration(kineticEnergy, Double.Parse(Diameter.Text));
+            CalculateDrag(Double.Parse(AirDensity.Text), 
+                Double.Parse(DragCoefficient.Text), 
+                (Double.Parse(Diameter.Text) / 2) * Math.PI, 
+                Double.Parse(Velocity.Text));
+
+            UserControl output = new Output(kineticEnergy, momentum, penetration, drag);
 
             Switcher.Switch(output);
         }
 
-        private double CalculateKineticEnergy()
+        public void CalculateKineticEnergy(double mass, double velocity)
         {
-            return 0.5 * Double.Parse(Weight.Text) * Math.Pow(Double.Parse(Velocity.Text), 2);
+            kineticEnergy = 0.5 * mass * Math.Pow(velocity, 2);
         }
 
-        private double CalculateMomentum()
+        public void CalculateMomentum(double mass, double velocity)
         {
-            return Double.Parse(Weight.Text) * Double.Parse(Velocity.Text);
+            momentum = mass * velocity;
         }
 
-        private double CalculatePenetration()
+        public void CalculatePenetration(double kineticEnergy, double diameter)
         {
-            return CalculateKineticEnergy() / Double.Parse(Diameter.Text);
+            penetration = kineticEnergy / diameter;
+        }
+
+        public void CalculateDrop(double gravity)
+        {
+            drag = gravity;
+        }
+
+        public void CalculateDrag(double airDensity, double dragCoefficient, double area, double velocity)
+        {
+            drag = (airDensity * dragCoefficient * area / 2) * Math.Pow(velocity, 2);
         }
     }
 }

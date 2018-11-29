@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallisticsSandbox", "BallisticsSandbox\BallisticsSandbox.csproj", "{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallisticsSandboxUnitTests", "UnitTestProject1\BallisticsSandboxUnitTests.csproj", "{A524A513-F5C0-4E53-A779-B1B4AF4B9DED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallisticsSandboxUITests", "BallisticsSandboxUITests\BallisticsSandboxUITests.csproj", "{57190412-9467-439C-83F2-2A99F6674CDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB6D5085-0EEB-4722-9BA7-E0BF07F3FF24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A524A513-F5C0-4E53-A779-B1B4AF4B9DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A524A513-F5C0-4E53-A779-B1B4AF4B9DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A524A513-F5C0-4E53-A779-B1B4AF4B9DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A524A513-F5C0-4E53-A779-B1B4AF4B9DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57190412-9467-439C-83F2-2A99F6674CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57190412-9467-439C-83F2-2A99F6674CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57190412-9467-439C-83F2-2A99F6674CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57190412-9467-439C-83F2-2A99F6674CDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,10 +9,16 @@
              Width="525">
     <Grid>
         <TextBox x:Name="KineticEnergy" HorizontalAlignment="Left" Height="23" Margin="100,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Recoil" HorizontalAlignment="Left" Height="23" Margin="57,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Recoil" HorizontalAlignment="Left" Height="23" Margin="141,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Kinetic Energy" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Recoil" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Recoil/Stopping Power&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         <Label Content="Penetration" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="Penetration" HorizontalAlignment="Left" Height="23" Margin="86,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Drag&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Drag" HorizontalAlignment="Left" Height="23" Margin="51,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Joules" HorizontalAlignment="Left" Margin="220,9,0,0" VerticalAlignment="Top"/>
+        <Label Content="Kg*m/s" HorizontalAlignment="Left" Margin="261,40,0,0" VerticalAlignment="Top"/>
+        <Label Content="mm" HorizontalAlignment="Left" Margin="206,69,0,0" VerticalAlignment="Top"/>
+        <Label Content="N" HorizontalAlignment="Left" Margin="171,100,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>
