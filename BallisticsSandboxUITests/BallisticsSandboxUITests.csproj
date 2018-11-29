@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{57190412-9467-439C-83F2-2A99F6674CDF}</ProjectGuid>
+    <ProjectGuid>{E243D6ED-E317-455F-8E6B-8CC821517AA7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BallisticsSandboxUITests</RootNamespace>
