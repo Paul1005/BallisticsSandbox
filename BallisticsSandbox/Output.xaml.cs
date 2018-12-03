@@ -25,7 +25,7 @@ namespace BallisticsSandbox
         public string penetration;
         public string drag;
 
-        public Output(double Ek, double P, double Pen, double drag)
+        public Output(double Ek, double P, double Pen, double drag, double newVelX, double newVelY)
         {
             InitializeComponent();
 
@@ -33,6 +33,9 @@ namespace BallisticsSandbox
             momentum = Recoil.Text = P.ToString();
             penetration = Penetration.Text = Pen.ToString();
             this.drag = Drag.Text = drag.ToString();
+            NewVelocityX.Text = newVelX.ToString();
+            NewVelocityY.Text = newVelY.ToString();
+            NewVelocity.Text = Math.Sqrt(Math.Pow(newVelX, 2) + Math.Pow(newVelY, 2)).ToString();
         }
 
         /// <summary>
@@ -45,6 +48,13 @@ namespace BallisticsSandbox
         public void UtilizeState(object state)
         {
             Switcher.Switch((UserControl)state);
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl mainWindow = new MainWindow();
+
+            Switcher.Switch(mainWindow);
         }
     }
 }
