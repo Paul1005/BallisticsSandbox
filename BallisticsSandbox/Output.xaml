@@ -21,8 +21,15 @@
         <Label Content="mm" HorizontalAlignment="Left" Margin="206,69,0,0" VerticalAlignment="Top"/>
         <Label Content="N" HorizontalAlignment="Left" Margin="171,100,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="NewVelocityX" HorizontalAlignment="Left" Height="23" Margin="171,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="190,330,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
+        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="409,87,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
         <TextBox x:Name="NewVelocityY" HorizontalAlignment="Left" Height="23" Margin="171,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="NewVelocity" HorizontalAlignment="Left" Height="23" Margin="171,218,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Canvas HorizontalAlignment="Left" Height="454" Margin="0,246,0,0" VerticalAlignment="Top" Width="525">
+            <Line
+            X1="10" Y1="10"
+            X2="50" Y2="50"
+            Stroke="Black"
+            StrokeThickness="4" />
+        </Canvas>
     </Grid>
 </UserControl>
