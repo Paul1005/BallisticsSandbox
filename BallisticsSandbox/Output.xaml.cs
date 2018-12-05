@@ -1,6 +1,7 @@
 ﻿using BallisticsSandbox.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,17 +26,73 @@ namespace BallisticsSandbox
         public string penetration;
         public string drag;
 
-        public Output(double Ek, double P, double Pen, double drag, double newVelX, double newVelY)
+        private double maxPenetration;
+        private double maxKineticEnergy;
+        private double maxMomentum;
+
+        public Output(double Ek, double P, double Pen, double drag, double newVel, double posX, double posY, double flightTime, double range, double terminalVelocity)
         {
             InitializeComponent();
+            FinalVelocity.Text = newVel.ToString();
+            FlightTime.Text = flightTime.ToString();
+            Range.Text = range.ToString();
+            TerminalVelocity.Text = terminalVelocity.ToString();
 
-            kineticEnergy = KineticEnergy.Text = Ek.ToString();
-            momentum = Recoil.Text = P.ToString();
-            penetration = Penetration.Text = Pen.ToString();
-            this.drag = Drag.Text = drag.ToString();
-            NewVelocityX.Text = newVelX.ToString();
-            NewVelocityY.Text = newVelY.ToString();
-            NewVelocity.Text = Math.Sqrt(Math.Pow(newVelX, 2) + Math.Pow(newVelY, 2)).ToString();
+            maxPenetration = Pen;
+            maxKineticEnergy = Ek;
+            maxMomentum = P;
+
+            //DrawBulletParabolaGraph();
+            //DrawPenetrationGraph();
+            DrawKineticEnergyGraph();
+            //DrawMomentumGraph();
+        }
+
+        private void DrawMomentumGraph()
+        {
+            for (int i = 0; i < Double.Parse(Range.Text); i++)
+            {
+                for (int j = 0; j < maxMomentum; i++)
+                {
+
+                }
+            }
+        }
+
+        private void DrawKineticEnergyGraph()
+        {
+            Debug.WriteLine(maxKineticEnergy);
+            double ratio = (maxKineticEnergy * 3) / Double.Parse(Range.Text);
+            Debug.WriteLine(ratio);
+            double j = 0;
+            for (int i = 0; i < Double.Parse(Range.Text); i++)
+            {
+                j += ratio;
+                Line myLine = new Line();
+                myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+                myLine.X1 = i * 3;
+                myLine.X2 = (i + 1) * 3;
+                myLine.Y1 = j;
+                myLine.Y2 = j + ratio;
+                myLine.StrokeThickness = 1;
+                canvas.Children.Add(myLine);
+            }
+        }
+
+        private void DrawPenetrationGraph()
+        {
+            for (int i = 0; i < Double.Parse(Range.Text); i++)
+            {
+                for (int j = 0; j < maxPenetration; i++)
+                {
+
+                }
+            }
+        }
+
+        private void DrawBulletParabolaGraph()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
