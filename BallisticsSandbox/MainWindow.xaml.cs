@@ -66,92 +66,9 @@ namespace BallisticsSandbox
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
-            CalculateArea(Double.Parse(Diameter.Text));
-            CalculateKineticEnergy(Double.Parse(Weight.Text), Double.Parse(Velocity.Text));
-            CalculateMomentum(Double.Parse(Weight.Text), Double.Parse(Velocity.Text));
-            CalculatePenetration(kineticEnergy, area);
-
-            CalculateTerminalVelocity(Double.Parse(Weight.Text), Double.Parse(Gravity.Text), Double.Parse(DragCoefficient.Text), Double.Parse(AirDensity.Text));
-
-            CalculateTimeInFlight(Double.Parse(Velocity.Text), Double.Parse(Angle.Text), Double.Parse(Gravity.Text));
-
-            CalculatePosition(Double.Parse(Velocity.Text), Double.Parse(Angle.Text), Double.Parse(Gravity.Text), flightTime);
-
-            Debug.WriteLine("Position " + positionX);
-
-            CalculateVelocityAtTime(flightTime, Double.Parse(Velocity.Text), Double.Parse(Weight.Text), Double.Parse(Angle.Text), Double.Parse(Gravity.Text), Double.Parse(DragCoefficient.Text));
-
-            CalculateRange(Double.Parse(Velocity.Text), Double.Parse(Gravity.Text), Double.Parse(Angle.Text));
-
-            Debug.WriteLine("Range " + range);
-
-            UserControl output = new Output(kineticEnergy, momentum, penetration, drag, newVelocity, positionX, positionY, flightTime, range, terminalVelocity, Double.Parse(Velocity.Text), Double.Parse(Weight.Text), Double.Parse(Angle.Text), Double.Parse(Gravity.Text), Double.Parse(DragCoefficient.Text), area);
+            UserControl output = new Output(Velocity.Text, Weight.Text, Diameter.Text, Gravity.Text, AirDensity.Text, DragCoefficient.Text, Angle.Text);
 
             Switcher.Switch(output);
-        }
-
-        public void CalculateArea(double diameter)
-        {
-            area = Math.PI * Math.Pow(diameter / 1000 / 2, 2);
-        }
-
-        public void CalculateTerminalVelocity(double weight, double gravity, double dragCoefficient, double airDensity)
-        {
-            terminalVelocity = Math.Sqrt((2 * weight * gravity) / (airDensity * 1000 * area * dragCoefficient));
-        }
-
-        public void CalculateKineticEnergy(double mass, double velocity)
-        {
-            kineticEnergy = 0.5 * mass * Math.Pow(velocity, 2);
-        }
-
-        public void CalculateMomentum(double mass, double velocity)
-        {
-            momentum = mass * velocity;
-        }
-
-        public void CalculatePenetration(double kineticEnergy, double area)
-        {
-            penetration = kineticEnergy / area / 1000000000;
-        }
-
-        public void CalculateVelocityAtTime(double time, double velocity, double weight, double angle, double gravity, double dragCoefficient)
-        {
-            double newVelocityX = velocity * Math.Cos(angle) * Math.Pow(Math.E, -gravity * time / terminalVelocity);
-            double newVelocityY = velocity * Math.Sin(angle) * Math.Pow(Math.E, -gravity * time / terminalVelocity) - terminalVelocity * (1 - Math.Pow(Math.E, -gravity * time / terminalVelocity));
-
-            newVelocity = Math.Sqrt(Math.Pow(newVelocityX, 2) + Math.Pow(newVelocityY, 2));
-        }
-
-        public void CalculateRange(double velocity, double gravity, double angle)
-        {
-            if (velocity * Math.Sin(angle) > terminalVelocity)
-            {
-                range = (velocity * terminalVelocity * Math.Cos(angle)) / gravity;
-            }
-            else if (velocity * Math.Sin(angle) < terminalVelocity)
-            {
-                range = (Math.Pow(velocity, 2) * Math.Sin(2 * angle)) / gravity;
-            }
-        }
-
-        public void CalculatePosition(double velocity, double angle, double gravity, double time)
-        {
-            positionX = ((velocity * terminalVelocity * Math.Cos(angle)) / gravity) * (1 - Math.Pow(Math.E, -gravity * time / terminalVelocity));
-
-            positionY = (terminalVelocity / gravity) * (velocity * Math.Sin(angle) + terminalVelocity) * (1 - Math.Pow(Math.E, -gravity * time / terminalVelocity)) - (terminalVelocity * time);
-        }
-
-        public void CalculateTimeInFlight(double velocity, double angle, double gravity)
-        {
-            if (velocity * Math.Sin(angle) > terminalVelocity / gravity)
-            {
-                flightTime = 2 * velocity * Math.Sin(angle) / gravity;
-            }
-            else if (velocity * Math.Sin(angle) < terminalVelocity / gravity)
-            {
-                flightTime = velocity * Math.Sin(angle) / gravity;
-            }
         }
     }
 }

@@ -17,18 +17,19 @@ namespace UnitTestProject1
             double diameter = 5.56;
             double airDensity = 1.225;
             double dragCoefficient = 0.25;
-            double area = (diameter / 2) * Math.PI;
 
             // Act
+            mainWindow.CalculateArea(diameter);
             mainWindow.CalculateKineticEnergy(weight, velocity);
             mainWindow.CalculateMomentum(weight, velocity);
             mainWindow.CalculatePenetration(mainWindow.kineticEnergy, diameter);
 
             // Assert
+            Assert.AreEqual((diameter / 2) * Math.PI, mainWindow.area);
             Assert.AreEqual(0.5 * weight * Math.Pow(velocity, 2), mainWindow.kineticEnergy);
             Assert.AreEqual(weight * velocity, mainWindow.momentum);
             Assert.AreEqual(mainWindow.kineticEnergy / diameter, mainWindow.penetration);
-            Assert.AreEqual((airDensity * dragCoefficient * area / 2) * Math.Pow(velocity, 2), mainWindow.drag);
+            Assert.AreEqual((airDensity * dragCoefficient * mainWindow.area / 2) * Math.Pow(velocity, 2), mainWindow.drag);
         }
 
         [TestMethod]
