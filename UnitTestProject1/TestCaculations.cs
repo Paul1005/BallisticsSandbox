@@ -12,15 +12,14 @@ namespace UnitTestProject1
         {
             // Arrange
             MainWindow mainWindow = new MainWindow();
-            double velocity = 400;
+            double velocity = 864;
             double weight = 4;
-            double diameter = 5;
+            double diameter = 5.56;
             double airDensity = 1.225;
             double dragCoefficient = 0.25;
             double area = (diameter / 2) * Math.PI;
 
             // Act
-            mainWindow.CalculateDrag(airDensity, dragCoefficient, area, velocity);
             mainWindow.CalculateKineticEnergy(weight, velocity);
             mainWindow.CalculateMomentum(weight, velocity);
             mainWindow.CalculatePenetration(mainWindow.kineticEnergy, diameter);
