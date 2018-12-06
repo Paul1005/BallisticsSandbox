@@ -21,42 +21,44 @@ namespace BallisticsSandbox
     /// </summary>
     public partial class Output : UserControl, ISwitchable
     {
-        public string kineticEnergy;
-        public string momentum;
-        public string penetration;
-        public string drag;
-
-        private double maxPenetration;
-        private double maxKineticEnergy;
-        private double maxMomentum;
-        private double initialVelocity;
-        private double weight;
-        private double angle;
-        private double gravity;
-        private double dragCoefficient;
-        private double area;
-        private double terminalVelocity;
+        public double maxPenetration;
+        public double maxKineticEnergy;
+        public double maxMomentum;
+        public double area;
+        public double terminalVelocity;
+        public double range;
+        public double flightTime;
 
         private Calculator calculator;
         private Graphing graphing;
 
-        public Output(string velocity, string weight, string diameter, string gravity, string airDensity, string dragCoefficient, string angle)
+        public Output(double velocity, double weight, double diameter, double gravity, double airDensity, double dragCoefficient, double angle)
         {
             InitializeComponent();
             calculator = new Calculator();
             graphing = new Graphing();
 
-            area = calculator.CalculateArea(Double.Parse(diameter));
-            terminalVelocity = calculator.CalculateTerminalVelocity(Double.Parse(weight), Double.Parse(gravity), Double.Parse(dragCoefficient), Double.Parse(airDensity), area);
+            area = calculator.CalculateArea(diameter);
 
+            terminalVelocity = calculator.CalculateTerminalVelocity(weight, gravity, dragCoefficient, airDensity, area);
             TerminalVelocity.Text = terminalVelocity.ToString();
-            Range.Text = calculator.CalculateRange(Double.Parse(velocity), Double.Parse(gravity), Double.Parse(angle), terminalVelocity).ToString();
-            FlightTime.Text = calculator.CalculateTimeInFlight(Double.Parse(velocity), Double.Parse(angle), Double.Parse(gravity) , terminalVelocity).ToString();
-            Recoil.Text = calculator.CalculateMomentum(Double.Parse(weight), Double.Parse(velocity)).ToString();
+
+            range = calculator.CalculateRange(velocity, gravity, angle, terminalVelocity);
+            Range.Text = range.ToString();
+
+            flightTime = calculator.CalculateTimeInFlight(velocity, angle, gravity, terminalVelocity);
+
+            FlightTime.Text = flightTime.ToString();
+
+            maxMomentum = calculator.CalculateMomentum(weight, velocity);
+            Recoil.Text = maxMomentum.ToString();
+
+            maxKineticEnergy = calculator.CalculateKineticEnergy(weight, velocity);
+            maxPenetration = calculator.CalculatePenetration(maxKineticEnergy, area);
 
             //DrawBulletParabolaGraph();
-            graphing.DrawKineticEnergyGraph(canvas);
-            graphing.DrawPenetrationGraph(canvas2);
+            graphing.DrawKineticEnergyGraph(canvas, maxKineticEnergy, range, flightTime, velocity, weight, angle, gravity, dragCoefficient, terminalVelocity);
+            graphing.DrawPenetrationGraph(canvas2, maxPenetration, range, flightTime, velocity, weight, area, angle, gravity, dragCoefficient, terminalVelocity);
             //DrawMomentumGraph();
         }
 

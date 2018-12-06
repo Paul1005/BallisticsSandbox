@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BallisticsSandbox.Objects
 {
-    class Calculator
+    public class Calculator
     {
 
         public double CalculateArea(double diameter)

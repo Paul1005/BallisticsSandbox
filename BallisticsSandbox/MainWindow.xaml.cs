@@ -22,17 +22,15 @@ namespace BallisticsSandbox
     /// </summary>
     public partial class MainWindow : UserControl, ISwitchable
     {
-        public double kineticEnergy;
-        public double momentum;
-        public double penetration;
-        public double drag;
-        public double newVelocity;
-        public double range;
-        public double terminalVelocity;
-        public double positionX;
-        public double positionY;
-        public double flightTime;
-        public double area;
+        public double velocity;
+        public double weight;
+        public double diameter;
+        public double gravity;
+        public double airDensity;
+        public double dragCoefficient;
+        public double angle;
+
+        public Output output;
 
         public MainWindow()
         {
@@ -52,13 +50,6 @@ namespace BallisticsSandbox
             Angle.Text = angleOfFire.ToString();
         }
 
-        /// <summary>
-        /// <para/> Will switch the screen to whatever is passed in.
-        /// <para/>Input: state - unused.
-        /// <para/>Output: none
-        /// <para/>Author: Connor Goudie
-        /// <para/>Date: March 30, 2017
-        /// </summary>
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();
@@ -66,9 +57,30 @@ namespace BallisticsSandbox
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
-            UserControl output = new Output(Velocity.Text, Weight.Text, Diameter.Text, Gravity.Text, AirDensity.Text, DragCoefficient.Text, Angle.Text);
+            velocity = Double.Parse(Velocity.Text);
+            weight = Double.Parse(Weight.Text);
+            diameter = Double.Parse(Diameter.Text);
+            gravity = Double.Parse(Gravity.Text);
+            airDensity = Double.Parse(AirDensity.Text);
+            dragCoefficient = Double.Parse(DragCoefficient.Text);
+            angle = Double.Parse(Angle.Text);
+
+            output = new Output(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle);
 
             Switcher.Switch(output);
+        }
+
+        public void Test_Calculate_Click()
+        {
+            velocity = Double.Parse(Velocity.Text);
+            weight = Double.Parse(Weight.Text);
+            diameter = Double.Parse(Diameter.Text);
+            gravity = Double.Parse(Gravity.Text);
+            airDensity = Double.Parse(AirDensity.Text);
+            dragCoefficient = Double.Parse(DragCoefficient.Text);
+            angle = Double.Parse(Angle.Text);
+
+            output = new Output(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle);
         }
     }
 }
