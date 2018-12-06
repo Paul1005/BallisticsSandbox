@@ -29,8 +29,13 @@ namespace BallisticsSandbox
         private double maxPenetration;
         private double maxKineticEnergy;
         private double maxMomentum;
+        private double initialVelocity;
+        private double weight;
+        private double angle;
+        private double gravity;
+        private double dragCoefficient;
 
-        public Output(double Ek, double P, double Pen, double drag, double newVel, double posX, double posY, double flightTime, double range, double terminalVelocity)
+        public Output(double Ek, double P, double Pen, double drag, double newVel, double posX, double posY, double flightTime, double range, double terminalVelocity, double initialVel, double w, double a, double g, double dc)
         {
             InitializeComponent();
             FinalVelocity.Text = newVel.ToString();
@@ -41,7 +46,11 @@ namespace BallisticsSandbox
             maxPenetration = Pen;
             maxKineticEnergy = Ek;
             maxMomentum = P;
-
+            initialVelocity = initialVel;
+            weight = w;
+            angle = a;
+            gravity = g;
+            dragCoefficient = dc;
             //DrawBulletParabolaGraph();
             //DrawPenetrationGraph();
             DrawKineticEnergyGraph();
@@ -61,21 +70,36 @@ namespace BallisticsSandbox
 
         private void DrawKineticEnergyGraph()
         {
-            Debug.WriteLine(maxKineticEnergy);
-            double ratio = (maxKineticEnergy * 3) / Double.Parse(Range.Text);
-            Debug.WriteLine(ratio);
-            double j = 0;
-            for (int i = 0; i < Double.Parse(Range.Text); i++)
+            double size = canvas.Width;
+            double ratioX = size / Double.Parse(FlightTime.Text);
+            double ratioY = size / maxKineticEnergy;
+
+            //Debug.WriteLine(ratioX);
+           // Debug.WriteLine(ratioY);
+
+            double ratio = Math.Max(ratioX, ratioY);
+
+            for (double i = 0; i < size; i += ratioX)
             {
-                j += ratio;
-                Line myLine = new Line();
-                myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
-                myLine.X1 = i * 3;
-                myLine.X2 = (i + 1) * 3;
-                myLine.Y1 = j;
-                myLine.Y2 = j + ratio;
-                myLine.StrokeThickness = 1;
-                canvas.Children.Add(myLine);
+                double velocityNow = CalculateVelocityAtTime(i, initialVelocity, weight, angle, gravity, dragCoefficient);
+                double kineticEnergyNow = Math.Abs(CalculateKineticEnergy(weight, velocityNow) - maxKineticEnergy);
+
+                double velocityNext = CalculateVelocityAtTime(i + ratioX, initialVelocity, weight, angle, gravity, dragCoefficient);
+                double kineticEnergyNext = Math.Abs(CalculateKineticEnergy(weight, velocityNext) - maxKineticEnergy);
+
+                Line graphSegment = new Line
+                {
+                    Stroke = System.Windows.Media.Brushes.Black,
+                    X1 = i,
+                    X2 = i + ratioX,
+                    Y1 = ratioY * kineticEnergyNow,
+                    Y2 = ratioY * kineticEnergyNext,
+                    StrokeThickness = 1
+                };
+
+                canvas.Children.Add(graphSegment);
+                Debug.WriteLine("ratioY " + ratioY);
+                Debug.WriteLine("KineticEnergy " + kineticEnergyNow);
             }
         }
 
@@ -112,6 +136,19 @@ namespace BallisticsSandbox
             UserControl mainWindow = new MainWindow();
 
             Switcher.Switch(mainWindow);
+        }
+
+        public double CalculateVelocityAtTime(double time, double velocity, double weight, double angle, double gravity, double dragCoefficient)
+        {
+            double newVelocityX = velocity * Math.Cos(angle) * Math.Pow(Math.E, -gravity * time / Double.Parse(TerminalVelocity.Text));
+            double newVelocityY = velocity * Math.Sin(angle) * Math.Pow(Math.E, -gravity * time / Double.Parse(TerminalVelocity.Text)) - Double.Parse(TerminalVelocity.Text) * (1 - Math.Pow(Math.E, -gravity * time / Double.Parse(TerminalVelocity.Text)));
+
+            return Math.Sqrt(Math.Pow(newVelocityX, 2) + Math.Pow(newVelocityY, 2));
+        }
+
+        public double CalculateKineticEnergy(double mass, double velocity)
+        {
+            return 0.5 * mass * Math.Pow(velocity, 2);
         }
     }
 }

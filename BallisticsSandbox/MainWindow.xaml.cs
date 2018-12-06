@@ -83,7 +83,7 @@ namespace BallisticsSandbox
 
             CalculateRange(Double.Parse(Velocity.Text), Double.Parse(Gravity.Text), Double.Parse(Angle.Text));
 
-            UserControl output = new Output(kineticEnergy, momentum, penetration, drag, newVelocity, positionX, positionY, flightTime, range, terminalVelocity);
+            UserControl output = new Output(kineticEnergy, momentum, penetration, drag, newVelocity, positionX, positionY, flightTime, range, terminalVelocity, Double.Parse(Velocity.Text), Double.Parse(Weight.Text), Double.Parse(Angle.Text), Double.Parse(Gravity.Text), Double.Parse(DragCoefficient.Text));
 
             Switcher.Switch(output);
         }

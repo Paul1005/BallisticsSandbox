@@ -8,9 +8,9 @@
         Height="700"
         Width="525">
     <Grid>
-        <TextBox x:Name="Velocity" HorizontalAlignment="Left" Height="23" Margin="67,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Weight" HorizontalAlignment="Left" Height="23" Margin="69,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Diameter" HorizontalAlignment="Left" Height="23" Margin="69,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Velocity" HorizontalAlignment="Left" Height="23" Margin="67,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="864"/>
+        <TextBox x:Name="Weight" HorizontalAlignment="Left" Height="23" Margin="69,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="4"/>
+        <TextBox x:Name="Diameter" HorizontalAlignment="Left" Height="23" Margin="69,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="5.56"/>
         <Label Content="Velocity" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Weight" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         <Label Content="Diameter" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
