@@ -37,7 +37,7 @@ namespace BallisticsSandbox
             InitializeComponent();
         }
 
-        public MainWindow(double velocity, double weight, double diameter, double gravity, double airDensity, double dragCoefficient, double angleOfFire, double time)
+        public MainWindow(double velocity, double weight, double diameter, double gravity, double airDensity, double dragCoefficient, double angle)
         {
             InitializeComponent();
 
@@ -47,7 +47,7 @@ namespace BallisticsSandbox
             Gravity.Text = gravity.ToString();
             AirDensity.Text = airDensity.ToString();
             DragCoefficient.Text = dragCoefficient.ToString();
-            Angle.Text = angleOfFire.ToString();
+            Angle.Text = angle.ToString();
         }
 
         public void UtilizeState(object state)

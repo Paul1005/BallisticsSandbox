@@ -21,6 +21,16 @@ namespace BallisticsSandbox
     /// </summary>
     public partial class Output : UserControl, ISwitchable
     {
+        // input params
+        public double velocity;
+        public double weight;
+        public double diameter;
+        public double gravity;
+        public double airDensity;
+        public double dragCoefficient;
+        public double angle;
+
+        // output params
         public double maxPenetration;
         public double maxKineticEnergy;
         public double maxMomentum;
@@ -34,7 +44,15 @@ namespace BallisticsSandbox
 
         public Output(double velocity, double weight, double diameter, double gravity, double airDensity, double dragCoefficient, double angle)
         {
-            InitializeComponent();
+        this.velocity = velocity;
+        this.weight = weight;
+        this.diameter = diameter;
+        this.gravity = gravity ;
+        this.airDensity = airDensity;
+        this.dragCoefficient = dragCoefficient;
+        this.angle = angle;
+
+        InitializeComponent();
             calculator = new Calculator();
             graphing = new Graphing();
 
@@ -57,18 +75,11 @@ namespace BallisticsSandbox
             maxPenetration = calculator.CalculatePenetration(maxKineticEnergy, area);
 
             //DrawBulletParabolaGraph();
-            graphing.DrawKineticEnergyGraph(canvas, maxKineticEnergy, range, flightTime, velocity, weight, angle, gravity, dragCoefficient, terminalVelocity);
-            graphing.DrawPenetrationGraph(canvas2, maxPenetration, range, flightTime, velocity, weight, area, angle, gravity, dragCoefficient, terminalVelocity);
-            //DrawMomentumGraph();
+            //graphing.DrawKineticEnergyGraph(canvas, maxKineticEnergy, range, flightTime, velocity, weight, angle, gravity, dragCoefficient, terminalVelocity);
+            graphing.DrawPenetrationGraph(canvas, maxPenetration, range, flightTime, velocity, weight, area, angle, gravity, dragCoefficient, terminalVelocity);
+            graphing.DrawMomentumGraph(canvas2, maxMomentum, range, flightTime, velocity, weight, angle, gravity, dragCoefficient, terminalVelocity);
         }
 
-        /// <summary>
-        /// <para/> Will switch the screen to whatever is passed in.
-        /// <para/>Input: state - unused.
-        /// <para/>Output: none
-        /// <para/>Author: Connor Goudie
-        /// <para/>Date: March 30, 2017
-        /// </summary>
         public void UtilizeState(object state)
         {
             Switcher.Switch((UserControl)state);
@@ -76,7 +87,7 @@ namespace BallisticsSandbox
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            UserControl mainWindow = new MainWindow();
+            UserControl mainWindow = new MainWindow(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle);
 
             Switcher.Switch(mainWindow);
         }

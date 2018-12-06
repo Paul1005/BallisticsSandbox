@@ -160,5 +160,38 @@ namespace BallisticsSandbox.Objects
                 canvas.Children.Add(graphSegment);
             }
         }
+
+        public void DrawMomentumGraph(Canvas canvas, double maxMomentum, double range, double flightTime, double initialVelocity, double weight, double angle, double gravity, double dragCoefficient, double terminalVelocity)
+        {
+            double size = canvas.Width;
+
+            DrawAxis(canvas, size, maxMomentum, range, "Meters", "Newtons Seconds", "Momentum/Distance graph");
+
+            double ratioMomentum = size / maxMomentum;
+            double ratioPosition = size / range;
+
+            for (double i = 0; i < flightTime; i++)
+            {
+                double velocityNow = calculator.CalculateVelocityAtTime(i, initialVelocity, weight, angle, gravity, dragCoefficient, terminalVelocity);
+                double momentumNow = Math.Abs(calculator.CalculateMomentum(weight, velocityNow) - maxMomentum);
+                double postionNow = calculator.CalculatePositionX(initialVelocity, angle, gravity, i, terminalVelocity);
+
+                double velocityNext = calculator.CalculateVelocityAtTime(i + 1, initialVelocity, weight, angle, gravity, dragCoefficient, terminalVelocity);
+                double momentumNext = Math.Abs(calculator.CalculateMomentum(weight, velocityNext) - maxMomentum);
+                double postionNext = calculator.CalculatePositionX(initialVelocity, angle, gravity, i + 1, terminalVelocity);
+
+                Line graphSegment = new Line
+                {
+                    Stroke = Brushes.Blue,
+                    X1 = ratioPosition * postionNow,
+                    X2 = ratioPosition * postionNext,
+                    Y1 = ratioMomentum * momentumNow,
+                    Y2 = ratioMomentum * momentumNext,
+                    StrokeThickness = 1
+                };
+
+                canvas.Children.Add(graphSegment);
+            }
+        }
     }
 }
