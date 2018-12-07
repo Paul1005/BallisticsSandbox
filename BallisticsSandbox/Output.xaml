@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Height="2000"
              Width="525">
-    <ScrollViewer HorizontalAlignment="Left" Height="700" Margin="0,0,0,0" VerticalAlignment="Top" Width="525">
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left" Height="700" Margin="0,0,0,0" VerticalAlignment="Top" Width="525">
         <Grid>
             <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
             <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="525" Margin="0,150,-17,0" VerticalAlignment="Top" Width="525"/>
@@ -21,9 +21,9 @@
             <TextBox x:Name="TerminalVelocity" HorizontalAlignment="Left" Height="23" Margin="101,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="m/s" HorizontalAlignment="Left" Margin="221,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.533,0"/>
             <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="525" Margin="0, 750,-17,0" VerticalAlignment="Top" Width="525" Grid.RowSpan="2"/>
-            <Label Content="Recoil Force" HorizontalAlignment="Left" Margin="0,79,0,0" VerticalAlignment="Top"/>
+            <Label Content="Recoil" HorizontalAlignment="Left" Margin="0,79,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="Recoil" HorizontalAlignment="Left" Height="23" Margin="79,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Label Content="N" HorizontalAlignment="Left" Margin="204,83,0,0" VerticalAlignment="Top"/>
+            <Label Content="N*s" HorizontalAlignment="Left" Margin="204,83,0,0" VerticalAlignment="Top"/>
         </Grid>
     </ScrollViewer>
 </UserControl>
