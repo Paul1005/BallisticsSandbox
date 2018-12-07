@@ -89,7 +89,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\Surface.cs" />
     <Compile Include="Objects\Switcher.cs" />
     <Compile Include="Output.xaml.cs">
       <DependentUpon>Output.xaml</DependentUpon>
