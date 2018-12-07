@@ -1,6 +1,7 @@
 ﻿using BallisticsSandbox.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,31 +21,65 @@ namespace BallisticsSandbox
     /// </summary>
     public partial class Output : UserControl, ISwitchable
     {
-        public string kineticEnergy;
-        public string momentum;
-        public string penetration;
-        public string drag;
+        // input params
+        public double velocity;
+        public double weight;
+        public double diameter;
+        public double gravity;
+        public double airDensity;
+        public double dragCoefficient;
+        public double angle;
 
-        public Output(double Ek, double P, double Pen, double drag, double newVelX, double newVelY)
+        // output params
+        public double maxPenetration;
+        public double maxKineticEnergy;
+        public double maxMomentum;
+        public double area;
+        public double terminalVelocity;
+        public double range;
+        public double flightTime;
+
+        private Calculator calculator;
+        private Graphing graphing;
+
+        public Output(double velocity, double weight, double diameter, double gravity, double airDensity, double dragCoefficient, double angle)
         {
-            InitializeComponent();
+            this.velocity = velocity;
+            this.weight = weight;
+            this.diameter = diameter;
+            this.gravity = gravity;
+            this.airDensity = airDensity;
+            this.dragCoefficient = dragCoefficient;
+            this.angle = angle;
 
-            kineticEnergy = KineticEnergy.Text = Ek.ToString();
-            momentum = Recoil.Text = P.ToString();
-            penetration = Penetration.Text = Pen.ToString();
-            this.drag = Drag.Text = drag.ToString();
-            NewVelocityX.Text = newVelX.ToString();
-            NewVelocityY.Text = newVelY.ToString();
-            NewVelocity.Text = Math.Sqrt(Math.Pow(newVelX, 2) + Math.Pow(newVelY, 2)).ToString();
+            InitializeComponent();
+            calculator = new Calculator();
+            graphing = new Graphing();
+
+            area = calculator.CalculateArea(diameter);
+
+            terminalVelocity = calculator.CalculateTerminalVelocity(weight, gravity, dragCoefficient, airDensity, area);
+            TerminalVelocity.Text = terminalVelocity.ToString();
+
+            range = calculator.CalculateRange(velocity, gravity, angle, terminalVelocity);
+            Range.Text = range.ToString();
+
+            flightTime = calculator.CalculateTimeInFlight(velocity, angle, gravity, terminalVelocity);
+
+            FlightTime.Text = flightTime.ToString();
+
+            maxMomentum = calculator.CalculateMomentum(weight, velocity);
+            Recoil.Text = maxMomentum.ToString();
+
+            maxKineticEnergy = calculator.CalculateKineticEnergy(weight, velocity);
+            maxPenetration = calculator.CalculatePenetration(maxKineticEnergy, area);
+
+            //DrawBulletParabolaGraph();
+            //graphing.DrawKineticEnergyGraph(canvas, maxKineticEnergy, range, flightTime, velocity, weight, angle, gravity, dragCoefficient, terminalVelocity);
+            graphing.DrawPenetrationGraph(canvas, maxPenetration, range, flightTime, velocity, weight, area, angle, gravity, dragCoefficient, terminalVelocity);
+            graphing.DrawMomentumGraph(canvas2, maxMomentum, range, flightTime, velocity, weight, angle, gravity, dragCoefficient, terminalVelocity);
         }
 
-        /// <summary>
-        /// <para/> Will switch the screen to whatever is passed in.
-        /// <para/>Input: state - unused.
-        /// <para/>Output: none
-        /// <para/>Author: Connor Goudie
-        /// <para/>Date: March 30, 2017
-        /// </summary>
         public void UtilizeState(object state)
         {
             Switcher.Switch((UserControl)state);
@@ -52,7 +87,7 @@ namespace BallisticsSandbox
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            UserControl mainWindow = new MainWindow();
+            UserControl mainWindow = new MainWindow(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle * (180 / Math.PI));
 
             Switcher.Switch(mainWindow);
         }

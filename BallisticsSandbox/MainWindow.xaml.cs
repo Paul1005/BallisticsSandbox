@@ -1,6 +1,7 @@
 ﻿using BallisticsSandbox.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,23 +22,22 @@ namespace BallisticsSandbox
     /// </summary>
     public partial class MainWindow : UserControl, ISwitchable
     {
-        public double kineticEnergy;
-        public double momentum;
-        public double penetration;
-        public double drag;
+        public double velocity;
+        public double weight;
+        public double diameter;
+        public double gravity;
+        public double airDensity;
+        public double dragCoefficient;
+        public double angle;
 
-        // temp variables
-        private double newVelocityX;
-        private double newVelocityY;
-        private double range;
-        private double terminalVelocity;
+        public Output output;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        public MainWindow(double velocity, double weight, double diameter, double gravity, double airDensity, double dragCoefficient, double angleOfFire, double time)
+        public MainWindow(double velocity, double weight, double diameter, double gravity, double airDensity, double dragCoefficient, double angle)
         {
             InitializeComponent();
 
@@ -47,17 +47,9 @@ namespace BallisticsSandbox
             Gravity.Text = gravity.ToString();
             AirDensity.Text = airDensity.ToString();
             DragCoefficient.Text = dragCoefficient.ToString();
-            Angle.Text = angleOfFire.ToString();
-            Time.Text = time.ToString();
+            Angle.Text = angle.ToString();
         }
 
-        /// <summary>
-        /// <para/> Will switch the screen to whatever is passed in.
-        /// <para/>Input: state - unused.
-        /// <para/>Output: none
-        /// <para/>Author: Connor Goudie
-        /// <para/>Date: March 30, 2017
-        /// </summary>
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();
@@ -65,69 +57,30 @@ namespace BallisticsSandbox
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
-            CalculateKineticEnergy(Double.Parse(Weight.Text), Double.Parse(Velocity.Text));
-            CalculateMomentum(Double.Parse(Weight.Text), Double.Parse(Velocity.Text));
-            CalculatePenetration(kineticEnergy, Double.Parse(Diameter.Text));
-            CalculateDrag(Double.Parse(AirDensity.Text),
-                Double.Parse(DragCoefficient.Text),
-                (Double.Parse(Diameter.Text) / 2) * Math.PI,
-                Double.Parse(Velocity.Text));
+            velocity = Double.Parse(Velocity.Text);
+            weight = Double.Parse(Weight.Text);
+            diameter = Double.Parse(Diameter.Text);
+            gravity = Double.Parse(Gravity.Text);
+            airDensity = Double.Parse(AirDensity.Text);
+            dragCoefficient = Double.Parse(DragCoefficient.Text);
+            angle = Double.Parse(Angle.Text) * (Math.PI / 180);
 
-            CalculateTerminalVelocity(Double.Parse(Weight.Text), Double.Parse(Gravity.Text), Double.Parse(DragCoefficient.Text));
-
-            CalculateVelocityChange(Double.Parse(Time.Text), Double.Parse(Velocity.Text), Double.Parse(Weight.Text), Double.Parse(Angle.Text), Double.Parse(Gravity.Text), Double.Parse(DragCoefficient.Text));
-
-            UserControl output = new Output(kineticEnergy, momentum, penetration, drag, newVelocityX, newVelocityY);
+            output = new Output(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle);
 
             Switcher.Switch(output);
         }
 
-        public void CalculateTerminalVelocity(double weight, double gravity, double dragCoefficient)
+        public void Test_Calculate_Click()
         {
-            terminalVelocity = (weight * gravity / dragCoefficient);
-        }
+            velocity = Double.Parse(Velocity.Text);
+            weight = Double.Parse(Weight.Text);
+            diameter = Double.Parse(Diameter.Text);
+            gravity = Double.Parse(Gravity.Text);
+            airDensity = Double.Parse(AirDensity.Text);
+            dragCoefficient = Double.Parse(DragCoefficient.Text);
+            angle = Double.Parse(Angle.Text) * (Math.PI / 180);
 
-        public void CalculateKineticEnergy(double mass, double velocity)
-        {
-            kineticEnergy = 0.5 * mass * Math.Pow(velocity, 2);
-        }
-
-        public void CalculateMomentum(double mass, double velocity)
-        {
-            momentum = mass * velocity;
-        }
-
-        public void CalculatePenetration(double kineticEnergy, double diameter)
-        {
-            penetration = kineticEnergy / diameter;
-        }
-
-        public void CalculateDrop(double gravity)
-        {
-            drag = gravity;
-        }
-
-        public void CalculateDrag(double airDensity, double dragCoefficient, double area, double velocity)
-        {
-            drag = (airDensity * dragCoefficient * area / 2) * Math.Pow(velocity, 2);
-        }
-
-        public void CalculateVelocityChange(double time, double velocity, double weight, double angle, double gravity, double dragCoefficient)
-        {
-            newVelocityX = velocity * Math.Cos(angle) * Math.Pow(Math.E, -gravity * time / terminalVelocity);
-            newVelocityY = velocity * Math.Sin(angle) * Math.Pow(Math.E, -gravity * time / terminalVelocity) - terminalVelocity * (1 - Math.Pow(Math.E, -gravity * time / terminalVelocity));
-        }
-
-        public void CalculateRange(double weight, double dragCoefficient, double velocity, double gravity, double angle)
-        {
-            if (velocity * Math.Sin(angle) > terminalVelocity)
-            {
-                range = Math.Pow(velocity, 2) * Math.Sin(2 * angle) / gravity;
-            }
-            else if (velocity * Math.Sin(angle) < terminalVelocity)
-            {
-                range = velocity * terminalVelocity * Math.Cos(angle) / gravity;
-            }
+            output = new Output(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle);
         }
     }
 }

@@ -5,31 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BallisticsSandbox"
              mc:Ignorable="d" 
-             Height="700"
+             Height="2000"
              Width="525">
-    <Grid>
-        <TextBox x:Name="KineticEnergy" HorizontalAlignment="Left" Height="23" Margin="100,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Recoil" HorizontalAlignment="Left" Height="23" Margin="141,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Kinetic Energy" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Recoil/Stopping Power&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label Content="Penetration" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Penetration" HorizontalAlignment="Left" Height="23" Margin="86,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Drag&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Drag" HorizontalAlignment="Left" Height="23" Margin="51,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Joules" HorizontalAlignment="Left" Margin="220,9,0,0" VerticalAlignment="Top"/>
-        <Label Content="Kg*m/s" HorizontalAlignment="Left" Margin="261,40,0,0" VerticalAlignment="Top"/>
-        <Label Content="mm" HorizontalAlignment="Left" Margin="206,69,0,0" VerticalAlignment="Top"/>
-        <Label Content="N" HorizontalAlignment="Left" Margin="171,100,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="NewVelocityX" HorizontalAlignment="Left" Height="23" Margin="171,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="409,87,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
-        <TextBox x:Name="NewVelocityY" HorizontalAlignment="Left" Height="23" Margin="171,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NewVelocity" HorizontalAlignment="Left" Height="23" Margin="171,218,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <Canvas HorizontalAlignment="Left" Height="454" Margin="0,246,0,0" VerticalAlignment="Top" Width="525">
-            <Line
-            X1="10" Y1="10"
-            X2="50" Y2="50"
-            Stroke="Black"
-            StrokeThickness="4" />
-        </Canvas>
-    </Grid>
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left" Height="700" Margin="0,0,0,0" VerticalAlignment="Top" Width="525">
+        <Grid>
+            <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
+            <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="525" Margin="0,150,-17,0" VerticalAlignment="Top" Width="525"/>
+            <Label x:Name="TimeInFlight" Content="Flight Time&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="FlightTime" HorizontalAlignment="Left" Height="23" Margin="69,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="s" HorizontalAlignment="Left" Margin="189,24,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="Range" HorizontalAlignment="Left" Height="23" Margin="48,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Range" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label Content="m" HorizontalAlignment="Left" Margin="167,1,0,0" VerticalAlignment="Top"/>
+            <Label Content="Terminal Velocity&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TerminalVelocity" HorizontalAlignment="Left" Height="23" Margin="101,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="m/s" HorizontalAlignment="Left" Margin="221,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.533,0"/>
+            <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="525" Margin="0, 750,-17,0" VerticalAlignment="Top" Width="525" Grid.RowSpan="2"/>
+            <Label Content="Recoil" HorizontalAlignment="Left" Margin="0,79,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="Recoil" HorizontalAlignment="Left" Height="23" Margin="79,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="N*s" HorizontalAlignment="Left" Margin="204,83,0,0" VerticalAlignment="Top"/>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
