@@ -44,15 +44,15 @@ namespace BallisticsSandbox
 
         public Output(double velocity, double weight, double diameter, double gravity, double airDensity, double dragCoefficient, double angle)
         {
-        this.velocity = velocity;
-        this.weight = weight;
-        this.diameter = diameter;
-        this.gravity = gravity ;
-        this.airDensity = airDensity;
-        this.dragCoefficient = dragCoefficient;
-        this.angle = angle;
+            this.velocity = velocity;
+            this.weight = weight;
+            this.diameter = diameter;
+            this.gravity = gravity;
+            this.airDensity = airDensity;
+            this.dragCoefficient = dragCoefficient;
+            this.angle = angle;
 
-        InitializeComponent();
+            InitializeComponent();
             calculator = new Calculator();
             graphing = new Graphing();
 
@@ -87,7 +87,7 @@ namespace BallisticsSandbox
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            UserControl mainWindow = new MainWindow(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle);
+            UserControl mainWindow = new MainWindow(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle * (180 / Math.PI));
 
             Switcher.Switch(mainWindow);
         }

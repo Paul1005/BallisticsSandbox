@@ -89,8 +89,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\Bullet.cs" />
-    <Compile Include="Objects\Environment.cs" />
     <Compile Include="Objects\Surface.cs" />
     <Compile Include="Objects\Switcher.cs" />
     <Compile Include="Output.xaml.cs">

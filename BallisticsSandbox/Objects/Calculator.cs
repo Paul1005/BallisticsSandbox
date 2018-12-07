@@ -44,13 +44,13 @@ namespace BallisticsSandbox.Objects
 
         public double CalculateRange(double velocity, double gravity, double angle, double terminalVelocity)
         {
-            if (velocity * Math.Sin(angle) > terminalVelocity)
+            if (velocity * Math.Sin(angle) < terminalVelocity)
             {
-                return (velocity * terminalVelocity * Math.Cos(angle)) / gravity;
+                return Math.Pow(velocity, 2) * Math.Sin(2 * angle) / gravity;
             }
-            else if (velocity * Math.Sin(angle) < terminalVelocity)
+            else if (velocity * Math.Sin(angle) > terminalVelocity)
             {
-                return (Math.Pow(velocity, 2) * Math.Sin(2 * angle)) / gravity;
+                return velocity * terminalVelocity * Math.Cos(angle) / gravity;
             }
             return -1;
         }
@@ -67,11 +67,11 @@ namespace BallisticsSandbox.Objects
 
         public double CalculateTimeInFlight(double velocity, double angle, double gravity, double terminalVelocity)
         {
-            if (velocity * Math.Sin(angle) > terminalVelocity / gravity)
+            if (velocity * Math.Sin(angle) < terminalVelocity)
             {
                 return 2 * velocity * Math.Sin(angle) / gravity;
             }
-            else if (velocity * Math.Sin(angle) < terminalVelocity / gravity)
+            else if (velocity * Math.Sin(angle) > terminalVelocity)
             {
                 return velocity * Math.Sin(angle) / gravity;
             }

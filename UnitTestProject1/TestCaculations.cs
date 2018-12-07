@@ -21,7 +21,7 @@ namespace UnitTestProject1
                 gravity = 9.8,
                 airDensity = 1.225,
                 dragCoefficient = 0.25,
-                angle = 45
+                angle = 45 * (Math.PI / 180)
             };
 
             // Act
@@ -34,8 +34,8 @@ namespace UnitTestProject1
             Assert.AreEqual(calculator.CalculatePenetration(output.maxKineticEnergy, output.area), output.maxPenetration);
             Assert.AreEqual(calculator.CalculateMomentum(4, 864), output.maxMomentum);
             Assert.AreEqual(calculator.CalculateTerminalVelocity(4, 9.8, 0.25, 1.225, output.area), output.terminalVelocity);
-            Assert.AreEqual(calculator.CalculateRange(864, 9.8, 45, output.terminalVelocity), output.range);
-            Assert.AreEqual(calculator.CalculateTimeInFlight(864, 45, 9.8, output.terminalVelocity), output.flightTime);
+            Assert.AreEqual(calculator.CalculateRange(864, 9.8, 45 *(Math.PI / 180), output.terminalVelocity), output.range);
+            Assert.AreEqual(calculator.CalculateTimeInFlight(864, 45 * (Math.PI / 180), 9.8, output.terminalVelocity), output.flightTime);
         }
     }
 }

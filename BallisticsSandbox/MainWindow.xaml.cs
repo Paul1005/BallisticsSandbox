@@ -63,7 +63,7 @@ namespace BallisticsSandbox
             gravity = Double.Parse(Gravity.Text);
             airDensity = Double.Parse(AirDensity.Text);
             dragCoefficient = Double.Parse(DragCoefficient.Text);
-            angle = Double.Parse(Angle.Text);
+            angle = Double.Parse(Angle.Text) * (Math.PI / 180);
 
             output = new Output(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle);
 
@@ -78,7 +78,7 @@ namespace BallisticsSandbox
             gravity = Double.Parse(Gravity.Text);
             airDensity = Double.Parse(AirDensity.Text);
             dragCoefficient = Double.Parse(DragCoefficient.Text);
-            angle = Double.Parse(Angle.Text);
+            angle = Double.Parse(Angle.Text) * (Math.PI / 180);
 
             output = new Output(velocity, weight, diameter, gravity, airDensity, dragCoefficient, angle);
         }
